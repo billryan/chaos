@@ -16,7 +16,10 @@ object ChaosBuild extends Build {
     base = file("chaos-examples"),
     settings = baseSettings ++
       formatSettings ++
-      publishSettings
+      publishSettings ++
+      Seq(
+        libraryDependencies ++= Dependencies.examples
+      )
   ).dependsOn(root % "compile->compile; test->test")
 
   lazy val root = Project(
@@ -129,6 +132,15 @@ object Dependencies {
     Test.junit % "test",
     Test.mockito % "test"
   )
+
+  val examples = Seq(
+    akkaActor % "compile",
+    // The macros subproject contains only code which is used at compile-time, hence the provided scope.
+    macWireMacros % "provided",
+    // The util subproject contains tagging, Wired and the @Module annotation; if you don't use these features, you don't need to include this dependency.
+    // macWireUtil % "compile",
+    macWireProxy % "compile"
+  )
 }
 
 object Dependency {
@@ -152,6 +164,7 @@ object Dependency {
     // test deps versions
     val JUnit = "4.12"
     val Mockito = "1.10.19"
+    val Akka = "2.3.9"
   }
 
   val guava = "com.google.guava" % "guava" % V.Guava
@@ -186,6 +199,8 @@ object Dependency {
   val macWireMacros = "com.softwaremill.macwire" %% "macros" % V.MacWire
   val macWireUtil = "com.softwaremill.macwire" %% "util" % V.MacWire
   val macWireProxy = "com.softwaremill.macwire" %% "proxy" % V.MacWire
+
+  val akkaActor = "com.typesafe.akka" %% "akka-actor" % V.Akka
 
   object Test {
     val junit = "junit" % "junit" % V.JUnit
