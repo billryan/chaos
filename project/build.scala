@@ -138,8 +138,11 @@ object Dependencies {
     // The macros subproject contains only code which is used at compile-time, hence the provided scope.
     macWireMacros % "provided",
     // The util subproject contains tagging, Wired and the @Module annotation; if you don't use these features, you don't need to include this dependency.
-    // macWireUtil % "compile",
-    macWireProxy % "compile"
+    macWireUtil % "compile",
+    macWireProxy % "compile",
+
+    // test
+    Test.mockito % "test"
   )
 }
 

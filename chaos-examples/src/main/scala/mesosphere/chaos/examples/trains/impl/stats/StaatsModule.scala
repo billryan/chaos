@@ -8,9 +8,7 @@ import mesosphere.chaos.examples.trains.impl.shunting.{ShuntingModule, TrainShun
 class LoadingStats(trainLoader: TrainLoader)
 class ShuntingStats(trainShunter: TrainShunter)
 
-class StatsModule(
-                   shuntingModule: ShuntingModule,
-                   loadingModule: LoadingModule) {
+class StatsModule(shuntingModule: ShuntingModule, loadingModule: LoadingModule) {
   lazy val loadingStats = wire[LoadingStats]
   lazy val shuntingStats = wire[ShuntingStats]
 }

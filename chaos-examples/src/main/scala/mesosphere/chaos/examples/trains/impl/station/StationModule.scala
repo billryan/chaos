@@ -30,6 +30,6 @@ object TrainStation extends App {
     with LoadingModule
     with StationModule
 
-  traditionalModules.trainStation.prepareAndDispatchNextTrain()
-  modernModules.trainStation.prepareAndDispatchNextTrain()
+  println(traditionalModules.trainStation.prepareAndDispatchNextTrain())
+  println(modernModules.trainStation.prepareAndDispatchNextTrain())
 }

@@ -2,16 +2,19 @@ package mesosphere.chaos.examples.trains.impl.shunting
 
 import com.softwaremill.macwire._
 
-class PointSwitcher()
+class PointSwitcher() {
+  def switch() = println("switch")
+}
 class TrainCarCoupler()
 
-trait TrainShunter
+trait TrainShunter { def shunt() = println("shunt")}
 
 class TraditionalTrainShunter(pointSwitcher: PointSwitcher,
                               trainCarCoupler: TrainCarCoupler) extends TrainShunter
 
 class TeleportingTrainShunter() extends TrainShunter
 
+@Module
 trait ShuntingModule {
   lazy val pointSwitcher = wire[PointSwitcher]
 
